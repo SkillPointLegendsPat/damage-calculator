@@ -1,141 +1,167 @@
-/* Global Styles */
+/* BODY */
 body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background-color: #0a0f2c; /* Page background */
-  color: white; /* Default text color */
+  background: url('images/background.png') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
 }
 
-/* Title */
 h1 {
-  text-align: center;
   margin-top: 40px;
   font-size: 2.5em;
 }
 
-/* Container for all content */
+/* CONTAINER */
 .container {
-  width: 80%;
-  max-width: 500px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 100px; /* Space from title */
-}
-
-/* Top Row: Weapon Type and Weapon */
-.top-row {
   width: 100%;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
+  max-width: 1000px;
+  margin-top: 0; /* we'll handle vertical positioning with main-row */
 }
 
-/* Input Groups */
-.input-group {
+/* MAIN ROW: vertically center columns */
+.main-row {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  align-items: center;  /* vertically align all three columns */
+  min-height: 50vh;     /* roughly middle of page */
+}
+
+/* adjust for taller screens if needed */
+@media (min-height: 800px) {
+  .main-row {
+    min-height: 55vh;   /* slightly above middle */
+  }
+}
+
+/* COLUMNS */
+.column {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 45%;
 }
 
-/* Labels above the dropdowns */
+.left-column,
+.right-column {
+  width: 220px;
+}
+
+.center-column {
+  width: 260px;
+}
+
+/* INPUT GROUPS */
+.input-group {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
 .input-group label {
-  margin-bottom: 5px;
-  font-size: 1em;
+  display: block;
+  text-align: center;
+  margin-bottom: 6px;
 }
 
-/* Input Group wrapper */
-.input-group {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 45%;
-  position: relative; /* Needed to position the arrow */
+/* INFO BELOW SELECT (Damage Multiplier, Resistances) */
+.info-below {
+  margin-top: 6px;       /* matches spacing of Damage/DPS */
+  text-align: center;
+  font-size: 0.95em;
+  line-height: 1.2em;
 }
 
-/* Dropdown style */
-select {
-  width: 100%;
-  padding: 10px 35px 10px 10px; /* extra right padding for the arrow */
-  border-radius: 10px;
-  border: 2px solid #282D50;
-  background-color: #090E2A;
-  color: white;
-  font-size: 1em;
-  appearance: none; /* Remove default arrow in Chrome/Safari */
-  -moz-appearance: none; /* Remove default arrow in Firefox */
-  -webkit-appearance: none;
+/* STAT INPUT */
+.stat-label {
+  margin-bottom: 6px;
 }
 
-/* Custom arrow on the right side */
-.input-group::after {
-  content: "▼"; /* small down arrow */
-  position: absolute;
-  right: 12px; /* distance from right edge of dropdown */
-  top: 66%;     /* vertically center */
-  transform: translateY(-50%);
-  pointer-events: none; /* lets clicks go through */
-  color: white;
-  font-size: 0.8em;
-}
-
-/* Weapon Info (Damage Multiplier & Attack Speed) */
-.weapon-info {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: 30px;
-  width: 30%;
-}
-
-.weapon-info div {
-  margin: 3px 0;
-  font-size: 0.9em; /* Smaller than other texts */
-}
-
-/* Middle Row: Stat Points Input */
-.middle-row {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 30px;
-  width: 100%;
-}
-
-/* Stat Points label */
-.middle-row label {
-  margin-bottom: 10px;
-  font-size: 1.1em;
-}
-
-/* Stat Points input */
 #stat {
-  width: 200px;
-  padding: 12px;
-  border-radius: 15px;
+  width: 100%;
+  padding: 10px;
+  font-size: 1.15em;
+  border-radius: 16px;
   border: 2px solid #282D50;
-  background-color: #090E2A;
+  background: #090E2A;
   color: white;
   text-align: center;
-  font-size: 1.2em;
 }
 
-/* Bottom Row: Damage & DPS */
-.bottom-row {
-  width: 30%;
-  display: flex;
-  justify-content: space-between;
-  margin-top: -10px;
+/* REMOVE FOCUS OUTLINE */
+#stat:focus {
+  outline: none;
+  box-shadow: none;
 }
 
-.bottom-row div {
+/* DAMAGE / DPS */
+.damage-info {
+  width: 100%;
+  margin-top: 6px; /* spacing matches info-below */
   text-align: center;
   font-size: 1em;
+  line-height: 1.2em;
 }
 
+/* --- CUSTOM DROPDOWN --- */
+.custom-dropdown {
+  width: 100%;
+  position: relative;
+  font-size: 1em;
+  user-select: none;
+  cursor: pointer;
+}
+
+.custom-dropdown .selected {
+  height: 42px;
+  line-height: 42px;
+  padding: 0 32px;
+  border-radius: 12px;
+  border: 2px solid #282D50;
+  background: #090E2A;
+  color: white;
+  text-align: center;
+  position: relative;
+}
+
+.custom-dropdown .selected::after {
+  content: "▼";
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.75em;
+  color: white;
+}
+
+.custom-dropdown .options {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #090E2A;
+  border: 2px solid #282D50;
+  border-radius: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.custom-dropdown .options li {
+  padding: 10px 0;
+  text-align: center;
+  line-height: 1em;
+  color: white;
+}
+
+.custom-dropdown .options li:hover {
+  background: #282D50;
+}

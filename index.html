@@ -1,50 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Damage Calculator</title>
-  <link rel="stylesheet" href="./style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Damage Calculator</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <h1>Skill Point Legends Damage Calculator</h1>
-  
-  <div class="container">
-    <!-- Weapon Type and Weapon -->
-    <div class="top-row">
+
+<h1>Skill Point Legends Damage Calculator</h1>
+
+<div class="container">
+  <div class="main-row">
+
+    <!-- LEFT: WEAPONS -->
+    <div class="column left-column">
+
+      <!-- Weapon Type -->
       <div class="input-group">
-        <label for="weaponType">Weapon Type</label>
-        <select id="weaponType">
-          <option value="physical">Physical</option>
-          <option value="magic">Magic</option>
-        </select>
+        <label>Weapon Type</label>
+        <div class="custom-dropdown" id="weaponTypeDropdown">
+          <div class="selected">Physical</div>
+          <ul class="options">
+            <li data-value="physical">Physical</li>
+            <li data-value="magic">Magic</li>
+          </ul>
+        </div>
       </div>
-      
+
+      <!-- Weapon -->
       <div class="input-group">
-        <label for="weapon">Weapon</label>
-        <select id="weapon">
-        </select>
+        <label>Weapon</label>
+        <div class="custom-dropdown" id="weaponDropdown">
+          <div class="selected">Punch</div>
+          <ul class="options"></ul>
+        </div>
+        <div class="info-below">
+          Damage Multiplier: <span id="multiplierDisplay"></span><br>
+          Attack Speed: <span id="attackSpeedDisplay"></span>
+        </div>
       </div>
+
     </div>
-    
-    <!-- Weapon Info -->
-    <div class="weapon-info">
-      <div id="multiplierDisplay">Damage Multiplier: </div>
-      <div id="attackSpeedDisplay">Attack Speed: </div>
-    </div>
-    
-    <!-- Stat Points -->
-    <div class="middle-row">
-      <label for="stat">Stat Points</label>
+
+    <!-- CENTER: STATS -->
+    <div class="column center-column">
+      <label class="stat-label">Stat Points</label>
       <input type="text" id="stat" value="0">
+
+      <div class="damage-info">
+        <div>Damage: <span id="damageDisplay"></span></div>
+        <div>DPS: <span id="dpsDisplay"></span></div>
+      </div>
     </div>
-    
-    <div class="bottom-row">
-      <div id="damageDisplay">Damage: </div>
-      <div id="dpsDisplay">DPS: </div>
+
+    <!-- RIGHT: BOSS -->
+    <div class="column right-column">
+
+      <div class="input-group">
+        <label>Boss</label>
+        <div class="custom-dropdown" id="bossDropdown">
+          <div class="selected">None</div>
+          <ul class="options"></ul>
+        </div>
+        <div class="info-below">
+          Physical Resistance: <span id="physicalResDisplay"></span><br>
+          Magic Resistance: <span id="magicResDisplay"></span>
+        </div>
+      </div>
+
     </div>
+
   </div>
-  
-  <script src="script.js"></script>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
