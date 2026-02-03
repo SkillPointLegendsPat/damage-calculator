@@ -79,69 +79,83 @@ function formatNumber(num) {
   return num.toString();
 }
 
-// --- Custom Dropdown Setup ---
-function setupCustomDropdown(dropdownId, optionsArray, callback) {
+// --- Generic Dropdown Setup ---
+function setupDropdown(dropdownId, callback) {
   const dropdown = document.getElementById(dropdownId);
   const selected = dropdown.querySelector('.selected');
   const optionsList = dropdown.querySelector('.options');
 
-  // Populate options
-  optionsList.innerHTML = '';
-  optionsArray.forEach(opt => {
-    const li = document.createElement('li');
-    li.textContent = opt;
-    li.dataset.value = opt;
-    li.addEventListener('click', () => {
-      selected.textContent = opt;
-      optionsList.style.display = 'none';
-      callback(opt);
-    });
-    optionsList.appendChild(li);
-  });
-
-  // Toggle options
   selected.addEventListener('click', () => {
     const isOpen = optionsList.style.display === 'block';
     document.querySelectorAll('.custom-dropdown .options').forEach(o => o.style.display = 'none');
     optionsList.style.display = isOpen ? 'none' : 'block';
   });
 
-  // Close if click outside
   document.addEventListener('click', e => {
     if (!dropdown.contains(e.target)) optionsList.style.display = 'none';
   });
-}
 
-// --- Initialize dropdowns ---
-// Weapon dropdown initialization function
-function populateWeaponDropdown(type) {
-  const weaponOptions = type === "physical" ? Object.keys(weapons.physical) : Object.keys(weapons.magic);
-  currentWeapon = weaponOptions[0];
-  setupCustomDropdown('weaponDropdown', weaponOptions, weapon => {
-    currentWeapon = weapon;
-    calculateDamage();
+  optionsList.addEventListener('click', e => {
+    if (e.target.tagName === 'LI') {
+      const value = e.target.dataset.value;
+      selected.textContent = value;
+      optionsList.style.display = 'none';
+
+      // Remove previous highlight
+      optionsList.querySelectorAll('li').forEach(li => li.classList.remove('selected-option'));
+
+      // Highlight new selection
+      e.target.classList.add('selected-option');
+
+      callback(value);
+    }
   });
 }
 
-// Setup weapon type dropdown
-setupCustomDropdown('weaponTypeDropdown', ["Physical", "Magic"], type => {
+// --- Populate Options ---
+function populateOptions(dropdownId, optionsArray, defaultValue) {
+  const optionsList = document.getElementById(dropdownId).querySelector('.options');
+  optionsList.innerHTML = '';
+
+  optionsArray.forEach(opt => {
+    const li = document.createElement('li');
+    li.textContent = opt;
+    li.dataset.value = opt;
+    if (opt === defaultValue) li.classList.add('selected-option');
+    optionsList.appendChild(li);
+  });
+
+  const selected = document.getElementById(dropdownId).querySelector('.selected');
+  selected.textContent = defaultValue;
+}
+
+// --- Weapon Type Dropdown ---
+setupDropdown('weaponTypeDropdown', type => {
   currentWeaponType = type.toLowerCase();
-  populateWeaponDropdown(currentWeaponType);
+  const weaponList = Object.keys(weapons[currentWeaponType]);
+  currentWeapon = weaponList[0];
+  populateOptions('weaponDropdown', weaponList, currentWeapon);
   calculateDamage();
 });
+populateOptions('weaponTypeDropdown', ["Physical", "Magic"], "Physical");
 
-// Populate weapon dropdown on page load
-populateWeaponDropdown(currentWeaponType);
+// --- Weapon Dropdown ---
+setupDropdown('weaponDropdown', weapon => {
+  currentWeapon = weapon;
+  calculateDamage();
+});
+populateOptions('weaponDropdown', Object.keys(weapons.physical), "Punch");
 
-setupCustomDropdown('bossDropdown', Object.keys(bosses), boss => {
+// --- Boss Dropdown ---
+setupDropdown('bossDropdown', boss => {
   currentBoss = boss;
   calculateDamage();
 });
+populateOptions('bossDropdown', Object.keys(bosses), "None");
 
 // --- Calculate Damage ---
 function calculateDamage() {
   const stat = parseFloat(statInput.value.replace(/,/g, '')) || 0;
-
   const weaponData = weapons[currentWeaponType][currentWeapon];
   const multiplier = weaponData.multiplier;
   const attackSpeed = weaponData.attackSpeed;
@@ -166,7 +180,6 @@ function calculateDamage() {
   damageDisplay.textContent = typeof damageAfterResist === 'number' ? formatNumber(damageAfterResist) : damageAfterResist;
   dpsDisplay.textContent = typeof dps === 'number' ? formatNumber(dps) : dps;
 
-  // Update Boss Resistances
   const physRes = bosses[currentBoss].physical > 0 ? Math.round(bosses[currentBoss].physical * 100) + "%" : "None";
   const magRes = bosses[currentBoss].magic > 0 ? Math.round(bosses[currentBoss].magic * 100) + "%" : "None";
 
@@ -174,7 +187,7 @@ function calculateDamage() {
   magicResDisplay.textContent = magRes;
 }
 
-// --- Stat input ---
+// --- Stat Input ---
 statInput.addEventListener('keydown', (e) => {
   if (statInput.value === '0' && !['ArrowLeft','ArrowRight','Tab','Shift','Backspace','Delete'].includes(e.key)) {
     statInput.value = '';
@@ -188,7 +201,8 @@ statInput.addEventListener('input', () => {
   calculateDamage();
 });
 
-// --- Initial calculation ---
+// --- Initial Calculation ---
 window.addEventListener('DOMContentLoaded', () => {
   calculateDamage();
 });
+

@@ -21,7 +21,7 @@ h1 {
 .container {
   width: 100%;
   max-width: 1000px;
-  margin-top: 0; /* we'll handle vertical positioning with main-row */
+  margin-top: 0;
 }
 
 /* MAIN ROW: vertically center columns */
@@ -29,14 +29,13 @@ h1 {
   display: flex;
   justify-content: center;
   gap: 40px;
-  align-items: center;  /* vertically align all three columns */
-  min-height: 50vh;     /* roughly middle of page */
+  align-items: center;
+  min-height: 50vh;
 }
 
-/* adjust for taller screens if needed */
 @media (min-height: 800px) {
   .main-row {
-    min-height: 55vh;   /* slightly above middle */
+    min-height: 55vh;
   }
 }
 
@@ -68,9 +67,9 @@ h1 {
   margin-bottom: 6px;
 }
 
-/* INFO BELOW SELECT (Damage Multiplier, Resistances) */
+/* INFO BELOW SELECT */
 .info-below {
-  margin-top: 6px;       /* matches spacing of Damage/DPS */
+  margin-top: 6px;
   text-align: center;
   font-size: 0.95em;
   line-height: 1.2em;
@@ -92,7 +91,6 @@ h1 {
   text-align: center;
 }
 
-/* REMOVE FOCUS OUTLINE */
 #stat:focus {
   outline: none;
   box-shadow: none;
@@ -101,7 +99,7 @@ h1 {
 /* DAMAGE / DPS */
 .damage-info {
   width: 100%;
-  margin-top: 6px; /* spacing matches info-below */
+  margin-top: 6px;
   text-align: center;
   font-size: 1em;
   line-height: 1.2em;
@@ -162,6 +160,14 @@ h1 {
   color: white;
 }
 
+/* Hover effect */
 .custom-dropdown .options li:hover {
   background: #282D50;
 }
+
+/* Highlight currently selected option */
+.custom-dropdown .options li.selected-option {
+  background: #5058A0;
+  font-weight: bold;
+}
+
