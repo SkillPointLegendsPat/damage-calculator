@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Damage Calculator</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <h1>Skill Point Legends Damage Calculator</h1>
+  
+  <div class="container">
+    <!-- Weapon Type and Weapon -->
+    <div class="top-row">
+      <div class="input-group">
+        <label for="weaponType">Weapon Type</label>
+        <select id="weaponType">
+          <option value="physical">Physical</option>
+          <option value="magic">Magic</option>
+        </select>
+      </div>
+      
+      <div class="input-group">
+        <label for="weapon">Weapon</label>
+        <select id="weapon">
+        </select>
+      </div>
+    </div>
+    
+    <!-- Weapon Info -->
+    <div class="weapon-info">
+      <div id="multiplierDisplay">Damage Multiplier: </div>
+      <div id="attackSpeedDisplay">Attack Speed: </div>
+    </div>
+    
+    <!-- Stat Points -->
+    <div class="middle-row">
+      <label for="stat">Stat Points</label>
+      <input type="text" id="stat" value="0">
+    </div>
+    
+    <div class="bottom-row">
+      <div id="damageDisplay">Damage: </div>
+      <div id="dpsDisplay">DPS: </div>
+    </div>
+  </div>
+  
+  <script src="script.js"></script>
+</body>
+</html>

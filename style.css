@@ -1,0 +1,141 @@
+/* Global Styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #0a0f2c; /* Page background */
+  color: white; /* Default text color */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Title */
+h1 {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 2.5em;
+}
+
+/* Container for all content */
+.container {
+  width: 80%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px; /* Space from title */
+}
+
+/* Top Row: Weapon Type and Weapon */
+.top-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+/* Input Groups */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 45%;
+}
+
+/* Labels above the dropdowns */
+.input-group label {
+  margin-bottom: 5px;
+  font-size: 1em;
+}
+
+/* Input Group wrapper */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 45%;
+  position: relative; /* Needed to position the arrow */
+}
+
+/* Dropdown style */
+select {
+  width: 100%;
+  padding: 10px 35px 10px 10px; /* extra right padding for the arrow */
+  border-radius: 10px;
+  border: 2px solid #282D50;
+  background-color: #090E2A;
+  color: white;
+  font-size: 1em;
+  appearance: none; /* Remove default arrow in Chrome/Safari */
+  -moz-appearance: none; /* Remove default arrow in Firefox */
+  -webkit-appearance: none;
+}
+
+/* Custom arrow on the right side */
+.input-group::after {
+  content: "▼"; /* small down arrow */
+  position: absolute;
+  right: 12px; /* distance from right edge of dropdown */
+  top: 66%;     /* vertically center */
+  transform: translateY(-50%);
+  pointer-events: none; /* lets clicks go through */
+  color: white;
+  font-size: 0.8em;
+}
+
+/* Weapon Info (Damage Multiplier & Attack Speed) */
+.weapon-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 30px;
+  width: 30%;
+}
+
+.weapon-info div {
+  margin: 3px 0;
+  font-size: 0.9em; /* Smaller than other texts */
+}
+
+/* Middle Row: Stat Points Input */
+.middle-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+/* Stat Points label */
+.middle-row label {
+  margin-bottom: 10px;
+  font-size: 1.1em;
+}
+
+/* Stat Points input */
+#stat {
+  width: 200px;
+  padding: 12px;
+  border-radius: 15px;
+  border: 2px solid #282D50;
+  background-color: #090E2A;
+  color: white;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+/* Bottom Row: Damage & DPS */
+.bottom-row {
+  width: 30%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: -10px;
+}
+
+.bottom-row div {
+  text-align: center;
+  font-size: 1em;
+}
+
