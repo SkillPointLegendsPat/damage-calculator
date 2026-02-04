@@ -17,7 +17,6 @@
     <!-- LEFT: WEAPONS -->
     <div class="column left-column">
 
-      <!-- Weapon Type -->
       <div class="input-group">
         <label>Weapon Type</label>
         <div class="custom-dropdown" id="weaponTypeDropdown">
@@ -29,7 +28,6 @@
         </div>
       </div>
 
-      <!-- Weapon -->
       <div class="input-group">
         <label>Weapon</label>
         <div class="custom-dropdown" id="weaponDropdown">
@@ -46,7 +44,7 @@
 
     <!-- CENTER: STATS -->
     <div class="column center-column">
-      <label class="stat-label">Stat Points</label>
+      <label class="stat-label">Skill Points</label>
       <input type="text" id="stat" value="0">
 
       <div class="damage-info">
@@ -55,18 +53,36 @@
       </div>
     </div>
 
-    <!-- RIGHT: BOSS -->
+    <!-- RIGHT: BOSS + MOB -->
     <div class="column right-column">
 
+      <!-- Boss -->
       <div class="input-group">
         <label>Boss</label>
         <div class="custom-dropdown" id="bossDropdown">
           <div class="selected">None</div>
           <ul class="options"></ul>
         </div>
+
         <div class="info-below">
+          Health: <span id="bossHealthDisplay"></span><br>
           Physical Resistance: <span id="physicalResDisplay"></span><br>
           Magic Resistance: <span id="magicResDisplay"></span>
+        </div>
+      </div>
+
+      <!-- Mob -->
+      <div class="input-group">
+        <label>Mob</label>
+        <div class="custom-dropdown" id="mobDropdown">
+          <div class="selected">None</div>
+          <ul class="options"></ul>
+        </div>
+
+        <div class="info-below">
+          Health: <span id="mobHealthDisplay"></span><br>
+          Physical Resistance: <span id="mobPhysicalResDisplay"></span><br>
+          Magic Resistance: <span id="mobMagicResDisplay"></span>
         </div>
       </div>
 

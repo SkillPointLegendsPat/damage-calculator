@@ -5,7 +5,7 @@ body {
   font-family: Arial, sans-serif;
   background: url('images/background.png') no-repeat center center fixed;
   background-size: cover;
-  color: white;
+  color: #5a64a0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,9 +46,15 @@ h1 {
   align-items: center;
 }
 
-.left-column,
+.left-column {
+  width: 220px;
+  height: 260px;
+  transform: translateY(32px); /* tweak this number */
+}
+
 .right-column {
   width: 220px;
+  height: 256px;
 }
 
 .center-column {
@@ -85,8 +91,8 @@ h1 {
   padding: 10px;
   font-size: 1.15em;
   border-radius: 16px;
-  border: 2px solid #282D50;
-  background: #090E2A;
+  border: 2px solid #2e3458;
+  background: #141625;
   color: white;
   text-align: center;
 }
@@ -119,8 +125,8 @@ h1 {
   line-height: 42px;
   padding: 0 32px;
   border-radius: 12px;
-  border: 2px solid #282D50;
-  background: #090E2A;
+  border: 2px solid #2e3458;
+  background: #141625;
   color: white;
   text-align: center;
   position: relative;
@@ -142,8 +148,8 @@ h1 {
   top: 100%;
   left: 0;
   width: 100%;
-  background: #090E2A;
-  border: 2px solid #282D50;
+  background: #141625;
+  border: 2px solid #2e3458;
   border-radius: 12px;
   margin: 0;
   padding: 0;
@@ -162,12 +168,28 @@ h1 {
 
 /* Hover effect */
 .custom-dropdown .options li:hover {
-  background: #282D50;
+  background: #1a1e33;
 }
 
 /* Highlight currently selected option */
 .custom-dropdown .options li.selected-option {
-  background: #5058A0;
+  background: #2e3458;
   font-weight: bold;
 }
 
+/* Hide scrollbar for dropdown options */
+
+/* Chrome, Safari, Edge */
+.custom-dropdown .options::-webkit-scrollbar {
+  display: none;
+}
+
+/* Firefox */
+.custom-dropdown .options {
+  scrollbar-width: none;
+}
+
+/* IE / old Edge */
+.custom-dropdown .options {
+  -ms-overflow-style: none;
+}
